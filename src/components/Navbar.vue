@@ -17,8 +17,8 @@
             <router-link :to="{name:'About'}" :class="['nav-link',{'active':$route.name==='About'}]">About</router-link>
           </li>
           <li class="nav-item">
-            <router-link :to="{name:'PokemonList'}" :class="['nav-link',{'active':$route.name==='PokemonList'}]">Pokemon
-              List
+            <router-link :to="{name:'Pokedex'}" :class="['nav-link',{'active':$route.name==='Pokedex'}]">
+              Pokedex
             </router-link>
           </li>
         </ul>
