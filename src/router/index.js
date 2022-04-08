@@ -1,8 +1,10 @@
 import {createRouter, createWebHistory} from "vue-router"
 
 const Home = () => import("../views/Home.vue")
-const About = ()=>import("../views/About.vue")
-const Database =()=>import("../views/Database.vue")
+const About = () => import("../views/About.vue")
+const PokemonList = () => import("../views/PokemonList.vue")
+const PokemonDetail =()=>import("../views/PokemonDetail.vue")
+
 const routes = [
     {
         path: "/",
@@ -15,9 +17,14 @@ const routes = [
         component: About
     },
     {
-        path: "/database",
-        name: "Database",
-        component: Database
+        path: "/pokemon",
+        name: "PokemonList",
+        component: PokemonList
+    },
+    {
+        path:"/pokemon/:pokemon",
+        name: "PokemonDetail",
+        component: PokemonDetail
     }
 ]
 

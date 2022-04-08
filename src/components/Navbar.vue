@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
     <div class="container justify-content-between">
       <router-link to="/" class="navbar-brand">
         <img src="../assets/logo.png" alt="Logo">
@@ -17,7 +17,8 @@
             <router-link :to="{name:'About'}" :class="['nav-link',{'active':$route.name==='About'}]">About</router-link>
           </li>
           <li class="nav-item">
-            <router-link :to="{name:'Database'}" :class="['nav-link',{'active':$route.name==='Database'}]">Database
+            <router-link :to="{name:'PokemonList'}" :class="['nav-link',{'active':$route.name==='PokemonList'}]">Pokemon
+              List
             </router-link>
           </li>
         </ul>
@@ -37,5 +38,6 @@
       height: 40px;
     }
   }
+
 }
 </style>
