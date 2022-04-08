@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <Card v-for="(pokemon,i) in pokemons" :key="`pokemon${i}`" :pokemon-name="pokemon"></Card>
+    <Card v-for="(pokemon,i) in store.state.pokemonList" :key="`pokemon${i}`" :pokemon-name="pokemon"></Card>
     <Waypoint class="col-lg-4 col-sm-6 mb-sm-3 mb-2 position-relative" @change="checkWaypoint">
       <div class="flipping-3 position-absolute" style="top: 50%;right:50%">
       </div>
@@ -11,28 +11,20 @@
 <script setup>
 import Card from "../components/Card.vue";
 import {Waypoint} from "vue-waypoint";
-import axios from "axios";
-import {onMounted, ref} from "vue";
+import {onMounted} from "vue";
+import {useStore} from "vuex";
 
-let initialLink = "https://pokeapi.co/api/v2/pokemon?limit=10"
-
-const pokemons = ref([])
-const nextLink = ref('');
-
-async function fetchPokemonApi(link) {
-  let response = await axios.get(link);
-  nextLink.value = response.data.next
-  pokemons.value.push(...await response.data.results)
-}
+let initialLink = "https://pokeapi.co/api/v2/pokemon?limit=20"
+const store = useStore();
 
 function checkWaypoint(waypointState) {
   if (waypointState.going === "IN") {
-    fetchPokemonApi(nextLink.value)
+    store.dispatch("fetchPokemonApi", store.state.nextLink)
   }
 }
 
 onMounted(() => {
-  fetchPokemonApi(initialLink)
+  store.state.pokemonList.length === 0 && store.dispatch("fetchPokemonApi", initialLink)
 })
 </script>
 

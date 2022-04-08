@@ -1,12 +1,24 @@
 import {createStore} from "vuex"
+import axios from "axios";
+
 export default createStore({
-    state:{
-
+    state: {
+        pokemonList: [],
+        nextLink: String
     },
-    mutations:{
-
+    getters: {},
+    mutations: {
+        SET_POKEMON(state, data) {
+            state.pokemonList.push(...data.results)
+            state.nextLink = data.next
+        }
     },
-    actions:{
-
-    }
+    actions: {
+        fetchPokemonApi({commit}, link) {
+            axios.get(link).then(response => {
+                commit("SET_POKEMON", response.data)
+            })
+        }
+    },
+    modules: {}
 })
