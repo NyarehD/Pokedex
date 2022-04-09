@@ -5,8 +5,8 @@ import Navbar from "./components/Navbar.vue";
 </script>
 
 <template>
+  <Navbar></Navbar>
   <div class="container-md">
-    <Navbar></Navbar>
     <router-view></router-view>
   </div>
 </template>

@@ -1,24 +1,30 @@
 import {createRouter, createWebHistory} from "vue-router"
-import About from "../views/About.vue";
-import Database from "../views/Database.vue";
 
 const Home = () => import("../views/Home.vue")
+const About = () => import("../views/About.vue")
+const Pokedex= () => import("../views/Pokedex.vue")
+const PokemonDetail =()=>import("../views/PokemonDetail.vue")
 
 const routes = [
     {
-        route: "/",
+        path: "/",
         name: "Home",
         component: Home
     },
     {
-        route: "/about",
+        path: "/about",
         name: "About",
         component: About
     },
     {
-        route: "/database",
-        name: "Database",
-        component: Database
+        path: "/pokedex",
+        name: "Pokedex",
+        component: Pokedex
+    },
+    {
+        path:"/pokemon/:pokemon",
+        name: "PokemonDetail",
+        component: PokemonDetail
     }
 ]
 
