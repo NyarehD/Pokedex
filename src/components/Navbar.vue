@@ -65,5 +65,8 @@ function toggleNavbarStatus(to) {
     }
   }
 
+  a {
+    cursor: pointer
+  }
 }
 </style>
