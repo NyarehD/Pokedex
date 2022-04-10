@@ -2,9 +2,9 @@ import {createRouter, createWebHistory} from "vue-router"
 
 const Home = () => import("../views/Home.vue")
 const About = () => import("../views/About.vue")
-const Pokedex= () => import("../views/Pokedex.vue")
-const PokemonDetail =()=>import("../views/PokemonDetail.vue")
-
+const Pokedex = () => import("../views/Pokedex.vue")
+const PokemonDetail = () => import("../views/PokemonDetail.vue")
+// const PokemonDetail=()=>import("../views/PokemonDetailOption.vue")
 const routes = [
     {
         path: "/",
@@ -22,7 +22,7 @@ const routes = [
         component: Pokedex
     },
     {
-        path:"/pokemon/:pokemon",
+        path: "/pokemon/:pokemon",
         name: "PokemonDetail",
         component: PokemonDetail
     }

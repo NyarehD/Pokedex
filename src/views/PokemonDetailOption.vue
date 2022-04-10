@@ -45,72 +45,70 @@
   </div>
   <div class="row">
     <div class="col-3">
-      <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.species.name}.jpg`" alt="">
+      <!--      <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain.species.name}.jpg`" alt="">-->
+      <h3>{{ evolutionChain?.chain.species.name }}</h3>
     </div>
     <div class="col-3">
-      <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.evolves_to[0].species.name}.jpg`"
-           alt="">
+      <!--      <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain.evolves_to[0].species.name}.jpg`"-->
+      alt="">
     </div>
     <div class="col-3">
-      <img
-          :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.evolves_to[0].evolves_to[0].species.name}.jpg`"
-          alt="">
+      <!--      <img-->
+      <!--          :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain.evolves_to[0].evolves_to[0].species.name}.jpg`"-->
+      <!--          alt="">-->
     </div>
   </div>
 </template>
 
-<script setup>
-import {useRoute} from "vue-router";
-import {computed, onBeforeMount, onMounted, ref} from "vue";
+<script>
 import axios from "axios";
 import TypeIcon from "../components/TypeIcon.vue";
 
-let route = useRoute();
-const currentPokemon = ref([]);
-const evolutionChain = ref([]);
-
-async function fetchPokemonApi() {
-  let response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${route.params.pokemon}`);
-  return response.data;
+export default {
+  name: "PokemonDetailOption",
+  data() {
+    return {
+      currentPokemon: [],
+      evolutionChain: []
+    }
+  },
+  components: {
+    TypeIcon,
+  },
+  computed: {
+    pokemonTypes() {
+      return this.currentPokemon.types;
+    },
+    heightInImperial() {
+      let inTotalInch = this.currentPokemon.height * 3.9370;
+      let inFeet = Math.floor(inTotalInch / 12)
+      let inRemainInch = Math.floor(inTotalInch % 12)
+      return inFeet === 0 ? `${this.addZeroAtFront(inRemainInch)}''` : `${inFeet}'${this.addZeroAtFront(inRemainInch)}''`;
+    },
+    weightInImperial() {
+      return (this.currentPokemon.weight * 0.22046).toFixed(2);
+    }
+  },
+  methods: {
+    addZeroAtFront(number) {
+      return number < 10 ? `0${number}` : number;
+    },
+    async fetchPokemonApi() {
+      let response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${route.params.pokemon}`);
+      return response.data;
+    },
+    async fetchEvolutionChain() {
+      let getSpecies = await axios.get(this.currentPokemon.value.species.url)
+      let getEvolutionChain = await axios.get(getSpecies.data.evolution_chain.url)
+      return getEvolutionChain.data;
+    }
+  },
+  async created() {
+    this.currentPokemon.value = await this.fetchPokemonApi();
+    this.evolutionChain.value = await this.fetchEvolutionChain()
+    console.log("Createdj")
+  }
 }
-
-async function fetchEvolutionChain() {
-  let getSpecies = await axios.get(currentPokemon.value.species.url)
-  let getEvolutionChain = await axios.get(getSpecies.data.evolution_chain.url)
-  return getEvolutionChain.data;
-}
-
-function addZeroAtFront(number) {
-  return number < 10 ? `0${number}` : number;
-}
-
-const pokemonTypes = computed(() => {
-  return currentPokemon.value.types;
-})
-
-const heightInImperial = computed(() => {
-  let inTotalInch = currentPokemon.value.height * 3.9370;
-  let inFeet = Math.floor(inTotalInch / 12)
-  let inRemainInch = Math.floor(inTotalInch % 12)
-  return inFeet === 0 ? `${addZeroAtFront(inRemainInch)}''` : `${inFeet}'${addZeroAtFront(inRemainInch)}''`;
-})
-
-const weightInImperial = computed(() => {
-  return (currentPokemon.value.weight * 0.22046).toFixed(2);
-})
-
-const created = async () => {
-  currentPokemon.value = await fetchPokemonApi();
-  evolutionChain.value = await fetchEvolutionChain()
-  console.log("Createdj")
-}
-onBeforeMount(() => {
-  console.log("Before mount")
-})
-onMounted(() => {
-  console.log("Mounted")
-})
-created()
 </script>
 
 <style scoped>
