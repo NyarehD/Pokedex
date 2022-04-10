@@ -2,7 +2,8 @@
   <div class="row">
     <h1 class="text-center my-3 text-capitalize">{{ currentPokemon.name }}</h1>
     <div class="col-md-6">
-      <img :src="`https://img.pokemondb.net/artwork/large/${currentPokemon.name}.jpg`" class="card-img-top w-100"
+      <img :src="`https://img.pokemondb.net/artwork/large/${currentPokemon.name}.jpg`"
+           class="card-img-top w-100 pokemon-img"
            :alt="`Image of ${currentPokemon.name}`" loading="lazy">
     </div>
     <div class="col-md-6">
@@ -11,7 +12,7 @@
         <tbody>
         <tr>
           <th>No.</th>
-          <th style="font-weight: normal">{{ currentPokemon.order }}</th>
+          <th>{{ currentPokemon.order }}</th>
         </tr>
         <tr>
           <th>Type</th>
@@ -21,11 +22,11 @@
         </tr>
         <tr>
           <th>Height</th>
-          <th>{{currentPokemon.height}} m</th>
+          <th>{{ currentPokemon.height / 10 }} m ({{ heightInImperial }})</th>
         </tr>
         <tr>
           <th>Weight</th>
-          <th>{{currentPokemon.weight}} kg</th>
+          <th>{{ currentPokemon.weight }} kg ({{ weightInImperial }}lb)</th>
         </tr>
         </tbody>
       </table>
@@ -47,9 +48,25 @@ async function fetchPokemonApi() {
   return response.data;
 }
 
+function addZeroAtFront(number) {
+  return number < 10 ? `0${number}` : number;
+}
+
 const pokemonTypes = computed(() => {
   return currentPokemon.value.types;
 })
+
+const heightInImperial = computed(() => {
+  let inTotalInch = currentPokemon.value.height * 3.9370;
+  let inFeet = Math.floor(inTotalInch / 12)
+  let inRemainInch = Math.floor(inTotalInch % 12)
+  return inFeet === 0 ? `${addZeroAtFront(inRemainInch)}''` : `${inFeet}'${addZeroAtFront(inRemainInch)}''`;
+})
+
+const weightInImperial = computed(() => {
+  return (currentPokemon.value.weight * 0.22046).toFixed(2);
+})
+
 onMounted(async () => {
   currentPokemon.value = await fetchPokemonApi();
 })
@@ -65,13 +82,8 @@ onMounted(async () => {
   border: none;
 }
 
-.type-icon {
-  width: 66px;
-  display: inline-block;
-  border: none;
-}
-
-.type-grass {
-  background-color: #77cc55;
+.pokemon-img {
+  height: 300px;
+  object-fit: contain;
 }
 </style>
