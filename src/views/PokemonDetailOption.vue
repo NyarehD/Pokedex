@@ -45,17 +45,18 @@
   </div>
   <div class="row">
     <div class="col-3">
-      <!--      <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain.species.name}.jpg`" alt="">-->
+      <img :src="`imghttps://img.pokemondb.net/artwork/large/${evolutionChain.chain.species.name}.jpg`" alt="">
       <h3>{{ evolutionChain?.chain.species.name }}</h3>
     </div>
     <div class="col-3">
-      <!--      <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain.evolves_to[0].species.name}.jpg`"-->
-      alt="">
+      <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain.evolves_to[0].species.name}.jpg`"
+           alt="">
+      <h3>{{evolutionChain.chain.evolves_to[0]}}</h3>
     </div>
     <div class="col-3">
-      <!--      <img-->
-      <!--          :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain.evolves_to[0].evolves_to[0].species.name}.jpg`"-->
-      <!--          alt="">-->
+      <img
+          :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain.evolves_to[0].evolves_to[0]?.species.name}.jpg`"
+          alt="">
     </div>
   </div>
 </template>

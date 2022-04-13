@@ -1,8 +1,8 @@
 <template>
-  <div class="row">
-    <h1 class="text-center my-3 text-capitalize">{{ currentPokemon.name }}</h1>
+  <div class="row mb-5">
+    <h1 class="text-center my-3 text-capitalize">{{ currentPokemon?.name }}</h1>
     <div class="col-md-6">
-      <img :src="`https://img.pokemondb.net/artwork/large/${currentPokemon.name}.jpg`"
+      <img :src="`https://img.pokemondb.net/artwork/large/${currentPokemon?.name}.jpg`"
            class="card-img-top w-100 pokemon-img"
            :alt="`Image of ${currentPokemon.name}`" loading="lazy">
     </div>
@@ -41,44 +41,42 @@
         </tbody>
       </table>
     </div>
-
   </div>
-  <div class="row">
-    <div class="col-3">
-      <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.species.name}.jpg`" alt="">
+  <h2 class="mb-2">Evolution Chain</h2>
+  <div class="d-flex flex-row evolution">
+    <div class="flex-fill">
+      <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.species.name}.jpg`" alt=""
+           class="w-100 evolution-img">
     </div>
-    <div class="col-3">
-      <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.evolves_to[0].species.name}.jpg`"
-           alt="">
+    <div class="">
+      <div class="col-1 d-flex">
+        <img src="../assets/arrow-right.svg" alt="" class="evolution-icon col-12">
+      </div>
+      <div class="flex-fill">
+        <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.evolves_to[0].species.name}.jpg`"
+             alt="" class="w-100 evolution-img">
+      </div>
     </div>
-    <div class="col-3">
+    <div class="col-1 d-flex">
+      <img src="../assets/arrow-right.svg" alt="" class="evolution-icon">
+    </div>
+    <div class="flex-fill">
       <img
           :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.evolves_to[0].evolves_to[0].species.name}.jpg`"
-          alt="">
+          alt="" class="w-100 evolution-img">
     </div>
   </div>
 </template>
 
 <script setup>
 import {useRoute} from "vue-router";
-import {computed, onBeforeMount, onMounted, ref} from "vue";
+import {computed, ref} from "vue";
 import axios from "axios";
 import TypeIcon from "../components/TypeIcon.vue";
 
 let route = useRoute();
 const currentPokemon = ref([]);
 const evolutionChain = ref([]);
-
-async function fetchPokemonApi() {
-  let response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${route.params.pokemon}`);
-  return response.data;
-}
-
-async function fetchEvolutionChain() {
-  let getSpecies = await axios.get(currentPokemon.value.species.url)
-  let getEvolutionChain = await axios.get(getSpecies.data.evolution_chain.url)
-  return getEvolutionChain.data;
-}
 
 function addZeroAtFront(number) {
   return number < 10 ? `0${number}` : number;
@@ -99,21 +97,26 @@ const weightInImperial = computed(() => {
   return (currentPokemon.value.weight * 0.22046).toFixed(2);
 })
 
+async function fetchPokemonApi() {
+  let response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${route.params.pokemon}`);
+  return response.data;
+}
+
+async function fetchEvolutionChain() {
+  let getSpecies = await axios.get(currentPokemon.value.species.url)
+  let getEvolutionChain = await axios.get(getSpecies.data.evolution_chain.url)
+  return getEvolutionChain.data;
+}
+
 const created = async () => {
   currentPokemon.value = await fetchPokemonApi();
-  evolutionChain.value = await fetchEvolutionChain()
-  console.log("Createdj")
+  evolutionChain.value = await fetchEvolutionChain();
 }
-onBeforeMount(() => {
-  console.log("Before mount")
-})
-onMounted(() => {
-  console.log("Mounted")
-})
+
 created()
 </script>
 
-<style scoped>
+<style lang="scss">
 .table-borderless > tbody > tr > td,
 .table-borderless > tbody > tr > th,
 .table-borderless > tfoot > tr > td,
@@ -126,5 +129,16 @@ created()
 .pokemon-img {
   height: 300px;
   object-fit: contain;
+}
+
+.evolution {
+  img.evolution-img {
+    height: 150px;
+    object-fit: contain;
+  }
+
+  img.evolution-icon {
+    width: 4vw;
+  }
 }
 </style>
