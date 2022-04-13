@@ -44,26 +44,40 @@
   </div>
   <h2 class="mb-2">Evolution Chain</h2>
   <div class="d-flex flex-row evolution">
-    <div class="flex-fill">
+    <!--    <div class="flex-fill">-->
+    <!--      <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.species.name}.jpg`" alt=""-->
+    <!--           class="w-100 evolution-img">-->
+    <!--    </div>-->
+    <!--    <div class="col-1 d-flex">-->
+    <!--      <img src="../assets/arrow-right.svg" alt="" class="evolution-icon col-12">-->
+    <!--    </div>-->
+    <!--    <div class="flex-fill">-->
+    <!--      <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.evolves_to[0].species.name}.jpg`"-->
+    <!--           alt="" class="w-100 evolution-img">-->
+    <!--    </div>-->
+    <!--    <div class="col-1 d-flex">-->
+    <!--      <img src="../assets/arrow-right.svg" alt="" class="evolution-icon">-->
+    <!--    </div>-->
+    <!--    <div class="flex-fill">-->
+    <!--      <img-->
+    <!--          :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.evolves_to[0].evolves_to[0].species.name}.jpg`"-->
+    <!--          alt="" class="w-100 evolution-img">-->
+    <!--    </div>-->
+    <div class="flex-grow-0">
       <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.species.name}.jpg`" alt=""
            class="w-100 evolution-img">
     </div>
-    <div class="">
-      <div class="col-1 d-flex">
-        <img src="../assets/arrow-right.svg" alt="" class="evolution-icon col-12">
+    <div class="flex-grow-1" v-if="evolutionChain.chain?.evolves_to.length>=1">
+      <div class="row" v-for="(second,i) in evolutionChain.chain?.evolves_to" :key="`secondEvo${i}`">
+        <img :src="`https://img.pokemondb.net/artwork/large/${second.species.name}.jpg`" alt=""
+             class="evolution-img col-6">
+        <div class="col-6" v-if="second.evolves_to.length>=1">
+          <div class="" v-for="(third,j) in second.evolves_to" :key="`thirdEvo${j}`">
+            <img :src="`https://img.pokemondb.net/artwork/large/${third.species.name}.jpg`" alt=""
+                 class="w-100 evolution-img">
+          </div>
+        </div>
       </div>
-      <div class="flex-fill">
-        <img :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.evolves_to[0].species.name}.jpg`"
-             alt="" class="w-100 evolution-img">
-      </div>
-    </div>
-    <div class="col-1 d-flex">
-      <img src="../assets/arrow-right.svg" alt="" class="evolution-icon">
-    </div>
-    <div class="flex-fill">
-      <img
-          :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.evolves_to[0].evolves_to[0].species.name}.jpg`"
-          alt="" class="w-100 evolution-img">
     </div>
   </div>
 </template>
