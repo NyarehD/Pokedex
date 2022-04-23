@@ -4,7 +4,6 @@ const Home = () => import("../views/Home.vue")
 const About = () => import("../views/About.vue")
 const Pokedex = () => import("../views/Pokedex.vue")
 const PokemonDetail = () => import("../views/PokemonDetail.vue")
-
 const routes = [
     {
         path: "/",

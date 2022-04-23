@@ -16,7 +16,7 @@ export default {
   props: {
     pokemonName: {
       type: Object,
-      required: false
+      required: true,
     }
   }
 }
