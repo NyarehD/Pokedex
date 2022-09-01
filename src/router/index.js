@@ -28,7 +28,7 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory("Pokedex"),
+    history: createWebHistory(""),
     routes
 })
 export default router
