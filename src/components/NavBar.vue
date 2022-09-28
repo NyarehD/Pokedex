@@ -1,27 +1,69 @@
 <template>
-  <header class="bg-white">
-    <div class="flex items-center justify-between max-w-screen-xl h-16 mx-auto px-4    md:px-8">
-      <a href="/home" class="block">
-        <img src="src/assets/International_Pokémon_logo.svg" class="w-full h-14">
-      </a>
+  <header class="">
+    <div class="bg-white flex items-center justify-between max-w-screen-xl h-16 md:h-20 mx-auto px-4 md:px-8">
+      <router-link to="/" class="block">
+        <img alt="Pokemon Logo" src="@/assets/International_Pokémon_logo.svg" class="w-full h-14">
+      </router-link>
       <div class="flex items-center justify-end flex-1">
         <nav class="hidden md:block" aria-label="header-navigation">
           <ul class="flex items-center gap-4 text-sm text-co">
-            <li><a href="/home" class="text-lg text-gray-500 hover:text-gray-800"
-                   :class="{'text-gray-800':$route.name='Home'}">Home</a></li>
-            <li><a href="/about" class="text-lg text-gray-500 hover:text-gray-800">About</a></li>
-            <li><a href="/pokedex" class="text-lg text-gray-500 hover:text-gray-800">Pokedex</a></li>
+            <li>
+              <NavBarLink route-name="home">Home</NavBarLink>
+            </li>
+            <li>
+              <NavBarLink route-name="about">About</NavBarLink>
+            </li>
+            <li>
+              <NavBarLink route-name="pokedex">Pokedex</NavBarLink>
+            </li>
           </ul>
         </nav>
-        <button class="md:hidden primaryBtn">Click me</button>
+        <button class="md:hidden primaryBtn px-3" @click="navBarToggle=!navBarToggle">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+               stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"/>
+          </svg>
+        </button>
       </div>
+    </div>
+    <div
+        class="bg-white max-w-screen-xl mx-auto px-4 md:px-8 pb-4 md:hidden transition-all duration-300 -z-10 fixed left-0 right-0"
+        :class="{'navMobile':navBarToggle,'navMobileAppear':!navBarToggle}">
+      <nav class="" aria-label="header-navigation">
+        <ul class="flex flex-col items-center text-sm text-co">
+          <li class="w-full h-10 align-middle text-center">
+            <router-link to="/" class="text-lg text-gray-500 hover:text-gray-800"
+                         :class="{'text-gray-800':$route.name==='home'}">Home
+            </router-link>
+          </li>
+          <li class="w-full h-10 align-middle text-center">
+            <router-link to="/about" class="text-lg text-gray-500 hover:text-gray-800"
+                         :class="{'text-gray-800':$route.name==='about'}">About
+            </router-link>
+          </li>
+          <li class="w-full h-10 align-middle text-center">
+            <a href="/pokedex" class="text-lg text-gray-500 hover:text-gray-800">Pokedex</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
+import {ref} from "vue";
+import NavBarLink from "./NavBarLink.vue";
+
+const navBarToggle = ref(false)
+
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.navMobile {
+  top: calc(-100% + 4rem);
+}
 
+.navMobileAppear {
+  top: 4rem;
+}
 </style>

@@ -8,6 +8,10 @@
         @apply bg-blue-700 hover:bg-blue-900 py-2.5 px-5 rounded-md text-gray-200 font-medium
     }
 
+    .primaryOutlineBtn {
+        @apply bg-white hover:bg-blue-700 border-2 border-blue-700 text-blue-700 py-2.5 px-5 rounded-md text-gray-200 font-medium
+    }
+
     .active {
         @apply text-gray-900
     }
