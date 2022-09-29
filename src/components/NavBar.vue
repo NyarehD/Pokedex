@@ -1,6 +1,6 @@
 <template>
-  <header class="sticky inset-0 z-10">
-    <div class="bg-white flex items-center justify-between max-w-screen-xl h-16 md:h-20 mx-auto px-4 md:px-8">
+  <header class="sticky inset-0 z-10 bg-white dark:bg-neutral-800 drop-shadow-xl">
+    <div class="flex items-center justify-between max-w-screen-xl h-16 md:h-20 mx-auto px-4 md:px-8">
       <router-link to="/" class="block">
         <img alt="Pokemon Logo" src="@/assets/International_Pokémon_logo.svg" class="w-full h-14">
       </router-link>
@@ -27,22 +27,18 @@
       </div>
     </div>
     <div
-        class="bg-white max-w-screen-xl mx-auto px-4 md:px-8 pb-4 md:hidden transition-all duration-300 -z-10 navMobile absolute w-100"
+        class="bg-white w-full dark:bg-neutral-800 max-w-screen-xl mx-auto px-4 md:px-8 pb-4 md:hidden transition-all duration-300 -z-10 navMobile absolute"
         :class="{'appear':navBarToggle}">
       <nav class="" aria-label="header-navigation">
         <ul class="flex flex-col items-center text-sm text-co">
           <li class="w-full h-10 align-middle text-center">
-            <router-link to="/" class="text-lg text-gray-500 hover:text-gray-800"
-                         :class="{'text-gray-800':$route.name==='home'}">Home
-            </router-link>
+            <NavBarLink route-name="home">Home</NavBarLink>
           </li>
           <li class="w-full h-10 align-middle text-center">
-            <router-link to="/about" class="text-lg text-gray-500 hover:text-gray-800"
-                         :class="{'text-gray-800':$route.name==='about'}">About
-            </router-link>
+            <NavBarLink route-name="about">About</NavBarLink>
           </li>
           <li class="w-full h-10 align-middle text-center">
-            <a href="/pokedex" class="text-lg text-gray-500 hover:text-gray-800">Pokedex</a>
+            <NavBarLink route-name="pokedex">Pokedex</NavBarLink>
           </li>
         </ul>
       </nav>
