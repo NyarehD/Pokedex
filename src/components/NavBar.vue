@@ -23,22 +23,9 @@
             </li>
           </ul>
         </nav>
-        <button
-          class="md:hidden primaryBtn px-3"
-          @click="navBarToggle = !navBarToggle">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-6 h-6 dark:text-neutral-700">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
-          </svg>
-        </button>
+        <NavBarToggleBtn
+          @click="navBarToggle = !navBarToggle"
+          :toggle-status="navBarToggle" />
       </div>
     </div>
     <div
@@ -70,6 +57,7 @@
 <script setup lang="ts">
   import { ref } from "vue";
   import NavBarLink from "./NavBarLink.vue";
+  import NavBarToggleBtn from "@/components/NavBarToggleBtn.vue";
 
   const navBarToggle = ref(false);
 
