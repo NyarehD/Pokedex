@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky inset-0 z-10 bg-white dark:bg-neutral-800 drop-shadow-xl">
+  <header class="sticky inset-0 z-10 bg-white dark:bg-neutral-800 drop-shadow-xl" v-once>
     <div class="flex items-center justify-between max-w-screen-xl h-16 md:h-20 mx-auto px-4 md:px-8">
       <router-link to="/" class="block">
         <img alt="Pokemon Logo" src="@/assets/International_Pokémon_logo.svg" class="w-full h-14">

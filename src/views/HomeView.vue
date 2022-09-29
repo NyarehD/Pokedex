@@ -3,7 +3,8 @@ import TheWelcome from '@/components/TheWelcome.vue'
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
+  <main class="container mx-auto">
+    <TheWelcome/>
+    <TheWelcome/>
   </main>
 </template>
