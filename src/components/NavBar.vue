@@ -1,5 +1,5 @@
 <template>
-  <header class="">
+  <header class="sticky inset-0 z-10">
     <div class="bg-white flex items-center justify-between max-w-screen-xl h-16 md:h-20 mx-auto px-4 md:px-8">
       <router-link to="/" class="block">
         <img alt="Pokemon Logo" src="@/assets/International_Pokémon_logo.svg" class="w-full h-14">
@@ -27,8 +27,8 @@
       </div>
     </div>
     <div
-        class="bg-white max-w-screen-xl mx-auto px-4 md:px-8 pb-4 md:hidden transition-all duration-300 -z-10 fixed left-0 right-0"
-        :class="{'navMobile':navBarToggle,'navMobileAppear':!navBarToggle}">
+        class="bg-white max-w-screen-xl mx-auto px-4 md:px-8 pb-4 md:hidden transition-all duration-300 -z-10 navMobile absolute w-100"
+        :class="{'appear':navBarToggle}">
       <nav class="" aria-label="header-navigation">
         <ul class="flex flex-col items-center text-sm text-co">
           <li class="w-full h-10 align-middle text-center">
@@ -60,10 +60,10 @@ const navBarToggle = ref(false)
 
 <style scoped lang="scss">
 .navMobile {
-  top: calc(-100% + 4rem);
+  transform: translateY(-100 + 4rem);
 }
 
-.navMobileAppear {
-  top: 4rem;
+.navMobile.appear {
+  transform: translateY(0);
 }
 </style>
