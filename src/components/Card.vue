@@ -1,9 +1,9 @@
 <template>
   <div
-    class="rounded-md hover:scale-105 transition duration-500 border-2 dark:border-neutral-500/50 shadow-sm"
+    class="rounded-md hover:scale-105 transition duration-500 border-2 dark:border-neutral-500/50 shadow-sm hover:cursor-pointer"
     @click="
       $router.push({
-        name: 'PokemonDetail',
+        name: 'pokemonDetail',
         params: { pokemon: pokemon.name },
       })
     ">
@@ -24,7 +24,7 @@
 </template>
 <script setup lang="ts">
   defineProps<{
-    pokemon: object;
+    pokemon: { name: string };
   }>();
 </script>
 <style scoped lang="scss"></style>
