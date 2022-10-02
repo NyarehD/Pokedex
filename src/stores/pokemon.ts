@@ -17,7 +17,9 @@ export const usePokemonStore = defineStore("pokemon", () => {
         pokemonList.value.push(...result.results);
         nextLink.value = result.next;
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => {
+        throw new Error(error);
+      });
   }
 
   return { pokemonList, nextLink, fetchPokemonApi };
