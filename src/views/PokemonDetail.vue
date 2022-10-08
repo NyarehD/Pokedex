@@ -14,7 +14,7 @@
       </div>
       <div class="">
         <h2 class="text-xl dark:text-neutral-200 text-center">PokeDex Data</h2>
-        <table class="table-auto min-w-full text-neutral-200">
+        <table class="table-auto min-w-full dark:text-neutral-200">
           <tbody class="divide-y divide-neutral-400">
             <tr>
               <th>No</th>
