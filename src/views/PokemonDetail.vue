@@ -1,14 +1,15 @@
 <template>
   <div class="customContainer h-screen">
     <h1
-      class="text-4xl capitalize dark:text-neutral-200 text-center mb-4 font-semibold">
+      class="text-4xl capitalize dark:text-neutral-200 text-center mb-8 font-semibold">
       {{ pokemonName }}
     </h1>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div class="dark:bg-white flex-1">
+      <div
+        class="dark:bg-white flex-1 rounded-md dark:shadow-2xl shadow-blue-400">
         <img
           :src="`https://img.pokemondb.net/artwork/large/${pokemonName}.jpg`"
-          class="w-full h-72 object-contain drop-shadow-none"
+          class="w-full h-72 object-contain"
           :alt="`${pokemonName}`"
           loading="lazy" />
       </div>
