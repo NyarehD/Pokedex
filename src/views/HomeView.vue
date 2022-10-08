@@ -1,5 +1,5 @@
 <template>
-  <main class="customContainer h-screen">
+  <main class="customContainer">
     <div
       class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4"
       ref="cardContainer">
