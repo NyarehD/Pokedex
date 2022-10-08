@@ -16,12 +16,12 @@
         <h2 class="text-xl dark:text-neutral-200 text-center">PokeDex Data</h2>
         <table class="table-auto min-w-full text-neutral-200">
           <tbody class="divide-y divide-neutral-400">
-            <tr class="px-2 py-3">
-              <th class="font-semibold">No</th>
+            <tr>
+              <th>No</th>
               <th>{{ currentPokemon.order }}</th>
             </tr>
-            <tr class="px-2 my-3">
-              <th class="font-semibold">Type</th>
+            <tr>
+              <th>Type</th>
               <th class="fw-normal">
                 <TypeIcon
                   v-for="(type, i) in pokemonTypes"
@@ -30,19 +30,19 @@
               </th>
             </tr>
             <tr>
-              <th class="font-semibold">Height</th>
+              <th>Height</th>
               <th class="">
                 {{ currentPokemon.height / 10 }} m ({{ heightInImperial }})
               </th>
             </tr>
             <tr>
-              <th class="font-semibold">Weight</th>
+              <th>Weight</th>
               <th class="fw-normal">
                 {{ currentPokemon.weight }} kg ({{ weightInImperial }}lb)
               </th>
             </tr>
             <tr>
-              <th class="font-semibold">Abilities</th>
+              <th>Abilities</th>
               <th>
                 <p
                   v-for="(ability, i) in currentPokemon.abilities"
@@ -122,5 +122,9 @@
 <style lang="scss" scoped>
   th {
     padding: 10px 0;
+
+    &:first-of-type {
+      font-weight: 600;
+    }
   }
 </style>
