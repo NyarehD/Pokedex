@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-  import Card from "@/components/Card.vue";
+  import Card from "@/components/PokemonCard.vue";
   import { usePokemonStore } from "@/stores/pokemon";
   import { onBeforeMount, onMounted, ref } from "vue";
   import { useInfiniteScroll } from "@vueuse/core";

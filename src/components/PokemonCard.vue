@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded-md hover:scale-105 transition duration-500 border-2 dark:border-neutral-500/50 shadow-sm hover:cursor-pointer"
+    class="rounded-md hover:scale-105 transition duration-500 border-2 dark:border-neutral-500/50 shadow-md hover:cursor-pointer"
     @click="
       $router.push({
         name: 'pokemonDetail',
