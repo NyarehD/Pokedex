@@ -1,7 +1,8 @@
 <template>
   <header
     class="sticky inset-0 z-10 bg-white dark:bg-neutral-800 drop-shadow-xl">
-    <div class="flex items-center justify-between customContainer h-16 md:h-20">
+    <div
+      class="flex items-center justify-between customContainer dark:bg-neutral-800 h-16 md:h-20">
       <router-link to="/" class="block">
         <img
           alt="Pokemon Logo"
