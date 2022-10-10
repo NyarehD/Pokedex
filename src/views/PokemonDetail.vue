@@ -6,7 +6,7 @@
     </h1>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div
-        class="dark:bg-white flex-1 rounded-md dark:shadow-2xl shadow-blue-400">
+        class="dark:bg-white flex-1 rounded-md dark:shadow-2xl shadow-blue-400 flex flex-col justify-center">
         <img
           :src="`https://img.pokemondb.net/artwork/large/${pokemonName}.jpg`"
           class="w-full h-72 object-contain"
@@ -14,16 +14,19 @@
           loading="lazy" />
       </div>
       <div class="">
-        <h2 class="text-xl dark:text-neutral-200 text-center">PokeDex Data</h2>
+        <h2 class="text-2xl font-semibold dark:text-neutral-200 text-center">
+          PokeDex Data
+        </h2>
         <table class="table-auto min-w-full dark:text-neutral-200">
-          <tbody class="divide-y divide-neutral-400">
+          <LoadingPokemonDetail v-if="isLoading" />
+          <tbody class="divide-y divide-neutral-400" v-if="!isLoading">
             <tr>
               <th>No</th>
               <th>{{ currentPokemon.order }}</th>
             </tr>
             <tr>
               <th>Type</th>
-              <th class="fw-normal">
+              <th>
                 <TypeIcon
                   v-for="(type, i) in pokemonTypes"
                   :key="i"
@@ -70,12 +73,14 @@
   import { computed, onMounted, ref } from "vue";
   import { useRoute } from "vue-router";
   import TypeIcon from "@/components/TypeIcon.vue";
+  import LoadingPokemonDetail from "@/components/LoadingPokemonDetail.vue";
 
   const route = useRoute();
   const pokemonName = route.params.pokemon;
 
   const currentPokemon = ref<{ species: string } | any[]>([]);
   const evolutionChain = ref([]);
+  const isLoading = ref(true);
 
   async function fetchPokemonApi() {
     return await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then(
@@ -117,6 +122,7 @@
   onMounted(async () => {
     currentPokemon.value = await fetchPokemonApi();
     evolutionChain.value = await fetchEvolutionChain();
+    isLoading.value = false;
   });
 </script>
 
