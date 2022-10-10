@@ -1,5 +1,5 @@
 <template>
-  <div class="customContainer h-screen">
+  <div class="customContainer h-screen px-12">
     <h1
       class="text-4xl capitalize dark:text-neutral-200 text-center mb-8 font-semibold">
       {{ pokemonName }}
