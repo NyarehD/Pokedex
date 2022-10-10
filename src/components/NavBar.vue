@@ -21,6 +21,9 @@
             <li>
               <NavBarLink route-name="pokedex">Pokedex</NavBarLink>
             </li>
+            <li>
+              <DarkModeButton />
+            </li>
           </ul>
         </nav>
         <NavBarToggleBtn
@@ -58,6 +61,7 @@
   import { ref } from "vue";
   import NavBarLink from "./NavBarLink.vue";
   import NavBarToggleBtn from "@/components/NavBarToggleBtn.vue";
+  import DarkModeButton from "@/components/DarkModeButton.vue";
 
   const navBarToggle = ref(false);
 
