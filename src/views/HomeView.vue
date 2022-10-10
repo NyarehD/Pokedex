@@ -3,16 +3,18 @@
     <div
       class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4"
       ref="cardContainer">
-      <Card
-        v-for="pokemon in pokemonStore.pokemonList"
-        :pokemon="pokemon"
-        :key="pokemon.name" />
+      <KeepAlive>
+        <PokemonCard
+          v-for="pokemon in pokemonStore.pokemonList"
+          :pokemon="pokemon"
+          :key="pokemon.name" />
+      </KeepAlive>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-  import Card from "@/components/PokemonCard.vue";
+  import PokemonCard from "@/components/PokemonCard.vue";
   import { usePokemonStore } from "@/stores/pokemon";
   import { onBeforeMount, onMounted, ref } from "vue";
   import { useInfiniteScroll } from "@vueuse/core";
