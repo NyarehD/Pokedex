@@ -9,6 +9,7 @@
           :pokemon="pokemon"
           :key="pokemon.name" />
       </KeepAlive>
+      <LoadingPokemonCard v-for="index in 6" :key="index" />
     </div>
   </main>
 </template>
@@ -18,6 +19,7 @@
   import { usePokemonStore } from "@/stores/pokemon";
   import { onBeforeMount, onMounted, ref } from "vue";
   import { useInfiniteScroll } from "@vueuse/core";
+  import LoadingPokemonCard from "@/components/LoadingPokemonCard.vue";
 
   const cardContainer = ref<HTMLHtmlElement>();
   const pokemonStore = usePokemonStore();
