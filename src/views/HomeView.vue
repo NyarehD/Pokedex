@@ -23,7 +23,7 @@
   const pokemonStore = usePokemonStore();
 
   onBeforeMount(() => {
-    if (pokemonStore.pokemonList) {
+    if (pokemonStore.pokemonList.length === 0) {
       pokemonStore.fetchPokemonApi(
         "https://pokeapi.co/api/v2/pokemon?limit=20"
       );
