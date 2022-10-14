@@ -66,6 +66,7 @@
         </table>
       </div>
     </div>
+    <EvolutionChart :evolution-chain="evolutionChain" />
   </div>
 </template>
 
@@ -74,6 +75,7 @@
   import { useRoute } from "vue-router";
   import TypeIcon from "@/components/TypeIcon.vue";
   import LoadingPokemonDetail from "@/components/LoadingPokemonDetail.vue";
+  import EvolutionChart from "@/components/EvolutionChart.vue";
 
   const route = useRoute();
   const pokemonName = route.params.pokemon;
