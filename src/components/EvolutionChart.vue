@@ -5,7 +5,8 @@
     </h2>
     <div class="md:grid grid-cols-3 gap-4">
       <div
-        class="mb-2 md:mb-0 flex flex-col justify-center bg-white rounded-md">
+        class="mb-2 md:mb-0 flex flex-col justify-center bg-white rounded-md hoverScale"
+        @click.stop="goToPokemon(evolutionChain.chain?.species.name)">
         <img
           :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.species.name}.jpg`"
           :alt="evolutionChain.chain?.species.name"
@@ -18,22 +19,27 @@
           class="flex flex-col md:grid md:grid-cols-2 md:gap-3"
           v-for="(second, i) in evolutionChain.chain?.evolves_to"
           :key="`secondEvo${i}`">
-          <div class="mb-2 md:mb-0 flex-1 bg-white rounded-md">
+          <div
+            class="mb-2 md:mb-0 flex-1 bg-white rounded-md hoverScale"
+            @click.stop="goToPokemon(second.species.name)">
             <img
               :src="`https://img.pokemondb.net/artwork/large/${second.species.name}.jpg`"
               :alt="second.species.name"
               class="evolution-img" />
           </div>
           <div class="flex-1" v-if="second.evolves_to.length >= 1">
-            <div
-              class="bg-white rounded-md"
+            <template
               v-for="(third, j) in second.evolves_to"
               :key="`thirdEvo${j}`">
-              <img
-                :src="`https://img.pokemondb.net/artwork/large/${third.species.name}.jpg`"
-                :alt="second.species.name"
-                class="evolution-img" />
-            </div>
+              <div
+                class="bg-white rounded-md hoverScale"
+                @click="goToPokemon(third.species.name)">
+                <img
+                  :src="`https://img.pokemondb.net/artwork/large/${third.species.name}.jpg`"
+                  :alt="second.species.name"
+                  class="evolution-img" />
+              </div>
+            </template>
           </div>
         </div>
       </div>

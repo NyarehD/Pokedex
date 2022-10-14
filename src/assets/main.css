@@ -17,6 +17,10 @@
     .active {
         @apply text-gray-900
     }
+
+    .hoverScale{
+        @apply hover:scale-105 transition duration-500
+    }
 }
 
 /*For Tailwind class based dark mode*/
