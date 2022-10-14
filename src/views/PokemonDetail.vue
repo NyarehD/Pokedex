@@ -1,16 +1,19 @@
 <template>
-  <div class="customContainer h-screen px-12">
+  <div class="customContainer px-12">
     <h1
       class="text-4xl capitalize dark:text-neutral-200 text-center mb-8 font-semibold">
-      {{ pokemonName }}
+      {{ route.params.pokemon }}
     </h1>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div
-        class="dark:bg-white flex-1 rounded-md dark:shadow-2xl shadow-blue-400 flex flex-col justify-center">
+        class="dark:bg-white flex-1 rounded-md dark:shadow-2xl shadow-blue-400 flex flex-col justify-center"
+        :class="{
+          'animate-pulse bg-neutral-500/50 dark:bg-neutral-300/50': isLoading,
+        }">
         <img
-          :src="`https://img.pokemondb.net/artwork/large/${pokemonName}.jpg`"
+          :src="`https://img.pokemondb.net/artwork/large/${route.params.pokemon}.jpg`"
           class="w-full h-72 object-contain"
-          :alt="`${pokemonName}`"
+          :alt="`${route.params.pokemon}`"
           loading="lazy" />
       </div>
       <div class="">
@@ -71,23 +74,23 @@
 </template>
 
 <script setup lang="ts">
-  import { computed, onMounted, ref } from "vue";
+  import { computed, onMounted, ref, watch } from "vue";
   import { useRoute } from "vue-router";
   import TypeIcon from "@/components/TypeIcon.vue";
   import LoadingPokemonDetail from "@/components/LoadingPokemonDetail.vue";
   import EvolutionChart from "@/components/EvolutionChart.vue";
 
   const route = useRoute();
-  const pokemonName = route.params.pokemon;
 
   const currentPokemon = ref<{ species: string } | any[]>([]);
   const evolutionChain = ref([]);
   const isLoading = ref(true);
 
+  // fetching Pokemon
   async function fetchPokemonApi() {
-    return await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then(
-      (response) => response.json()
-    );
+    return await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${route.params.pokemon}`
+    ).then((response) => response.json());
   }
 
   async function fetchEvolutionChain() {
@@ -97,6 +100,11 @@
     return await fetch(getSpecies.evolution_chain.url).then((response) =>
       response.json()
     );
+  }
+
+  async function fetchAll() {
+    currentPokemon.value = await fetchPokemonApi();
+    evolutionChain.value = await fetchEvolutionChain();
   }
 
   // Computed
@@ -122,8 +130,13 @@
   });
 
   onMounted(async () => {
-    currentPokemon.value = await fetchPokemonApi();
-    evolutionChain.value = await fetchEvolutionChain();
+    await fetchAll();
+    isLoading.value = false;
+  });
+
+  watch(route, async () => {
+    isLoading.value = true;
+    await fetchAll();
     isLoading.value = false;
   });
 </script>

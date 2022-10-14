@@ -49,10 +49,18 @@
 
 <script setup>
   import { defineProps } from "vue";
+  import router from "@/router";
 
   defineProps({
     evolutionChain: Object,
   });
+
+  function goToPokemon(pokemonName) {
+    router.push({
+      name: "pokemonDetail",
+      params: { pokemon: pokemonName },
+    });
+  }
 </script>
 
 <style lang="scss">
