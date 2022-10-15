@@ -1,7 +1,7 @@
 <template>
   <div class="mt-3">
     <h2 class="text-3xl font-semibold dark:text-neutral-200 text-center mb-6">
-      Evolution Chain{{ evolutionChain.chain?.species }}
+      Evolution Chain
     </h2>
     <div class="md:grid grid-cols-3 gap-4">
       <div

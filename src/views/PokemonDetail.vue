@@ -69,8 +69,8 @@
         </table>
       </div>
     </div>
-    <LoadingEvolutionChart/>
-    <EvolutionChart :evolution-chain="evolutionChain" v-if="!isLoading" />
+    <LoadingEvolutionChart v-if="isLoading" />
+    <EvolutionChart :evolution-chain="evolutionChain" v-else />
   </div>
 </template>
 
