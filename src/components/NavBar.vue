@@ -3,30 +3,27 @@
     class="sticky inset-0 z-10 bg-white dark:bg-neutral-800 drop-shadow-xl">
     <div
       class="flex items-center justify-between customContainer dark:bg-neutral-800 h-16 md:h-20">
-      <router-link to="/" class="block">
+      <RouterLink to="/" class="block">
         <img
           alt="Pokemon Logo"
           src="@/assets/Pokemon_International.svg"
           class="w-full h-14" />
-      </router-link>
+      </RouterLink>
       <div class="flex items-center justify-end flex-1">
         <nav class="hidden md:block" aria-label="header-navigation">
           <ul class="flex items-center gap-4 text-sm text-co">
             <li>
-              <NavBarLink route-name="home">Home</NavBarLink>
+              <NavBarLink route-name="pokedex">Pokedex</NavBarLink>
             </li>
             <li>
               <NavBarLink route-name="about">About</NavBarLink>
-            </li>
-            <li>
-              <NavBarLink route-name="pokedex">Pokedex</NavBarLink>
             </li>
             <li>
               <DarkModeButton />
             </li>
           </ul>
         </nav>
-        <DarkModeButton class="md:hidden mx-3"/>
+        <DarkModeButton class="md:hidden mx-3" />
         <NavBarToggleBtn
           @click="navBarToggle = !navBarToggle"
           :toggle-status="navBarToggle" />
@@ -38,18 +35,13 @@
       <nav class="" aria-label="header-navigation">
         <ul class="flex flex-col items-center text-sm text-co">
           <li class="w-full h-10 align-middle text-center">
-            <NavBarLink route-name="home" @click="toggleNavBar">
-              Home
+            <NavBarLink route-name="pokedex" @click="toggleNavBar">
+              Pokedex
             </NavBarLink>
           </li>
           <li class="w-full h-10 align-middle text-center">
             <NavBarLink route-name="about" @click="toggleNavBar">
               About
-            </NavBarLink>
-          </li>
-          <li class="w-full h-10 align-middle text-center">
-            <NavBarLink route-name="pokedex" @click="toggleNavBar">
-              Pokedex
             </NavBarLink>
           </li>
         </ul>
