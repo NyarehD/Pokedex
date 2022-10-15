@@ -1,7 +1,7 @@
 <template>
   <div class="mt-3">
     <h2 class="text-3xl font-semibold dark:text-neutral-200 text-center mb-6">
-      Evolution Chain
+      Evolution Chain{{ evolutionChain.chain?.species }}
     </h2>
     <div class="md:grid grid-cols-3 gap-4">
       <div
@@ -12,7 +12,9 @@
           :alt="evolutionChain.chain?.species.name"
           class="evolution-img"
           :aria-label="evolutionChain.chain?.species.name" />
-        <h1>{{ evolutionChain.chain?.species.name }}</h1>
+        <h1 class="text-center font-semibold text-xl my-2 capitalize text-dark">
+          {{ evolutionChain.chain?.species.name }}
+        </h1>
       </div>
       <div
         class="md:col-span-2 grid md:grid-cols-1 gap-2"
@@ -28,18 +30,26 @@
               :src="`https://img.pokemondb.net/artwork/large/${second.species.name}.jpg`"
               :alt="second.species.name"
               class="evolution-img" />
+            <h1
+              class="text-center font-semibold text-xl my-2 capitalize text-dark">
+              {{ second.species.name }}
+            </h1>
           </div>
           <div class="flex-1" v-if="second.evolves_to.length >= 1">
             <template
               v-for="(third, j) in second.evolves_to"
               :key="`thirdEvo${j}`">
               <div
-                class="bg-white rounded-md hoverScale"
+                class="bg-white rounded-md hoverScale h-full"
                 @click="goToPokemon(third.species.name)">
                 <img
                   :src="`https://img.pokemondb.net/artwork/large/${third.species.name}.jpg`"
-                  :alt="second.species.name"
+                  :alt="third.species.name"
                   class="evolution-img" />
+                <h1
+                  class="text-center font-semibold text-xl my-2 capitalize text-dark">
+                  {{ third.species.name }}
+                </h1>
               </div>
             </template>
           </div>
