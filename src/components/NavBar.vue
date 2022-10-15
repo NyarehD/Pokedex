@@ -26,6 +26,7 @@
             </li>
           </ul>
         </nav>
+        <DarkModeButton class="md:hidden mx-3"/>
         <NavBarToggleBtn
           @click="navBarToggle = !navBarToggle"
           :toggle-status="navBarToggle" />
