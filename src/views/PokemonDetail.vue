@@ -69,7 +69,8 @@
         </table>
       </div>
     </div>
-    <EvolutionChart :evolution-chain="evolutionChain" />
+    <LoadingEvolutionChart/>
+    <EvolutionChart :evolution-chain="evolutionChain" v-if="!isLoading" />
   </div>
 </template>
 
@@ -77,8 +78,9 @@
   import { computed, onMounted, ref, watch } from "vue";
   import { useRoute } from "vue-router";
   import TypeIcon from "@/components/TypeIcon.vue";
-  import LoadingPokemonDetail from "@/components/LoadingPokemonDetail.vue";
+  import LoadingPokemonDetail from "@/components/loading/LoadingPokemonDetail.vue";
   import EvolutionChart from "@/components/EvolutionChart.vue";
+  import LoadingEvolutionChart from "@/components/loading/LoadingEvolutionChart.vue";
 
   const route = useRoute();
 

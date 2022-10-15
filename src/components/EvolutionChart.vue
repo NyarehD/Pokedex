@@ -10,7 +10,9 @@
         <img
           :src="`https://img.pokemondb.net/artwork/large/${evolutionChain.chain?.species.name}.jpg`"
           :alt="evolutionChain.chain?.species.name"
-          class="evolution-img" />
+          class="evolution-img"
+          :aria-label="evolutionChain.chain?.species.name" />
+        <h1>{{ evolutionChain.chain?.species.name }}</h1>
       </div>
       <div
         class="md:col-span-2 grid md:grid-cols-1 gap-2"

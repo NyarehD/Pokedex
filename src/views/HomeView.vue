@@ -19,7 +19,7 @@
   import { usePokemonStore } from "@/stores/pokemon";
   import { onBeforeMount, onMounted, ref } from "vue";
   import { useInfiniteScroll } from "@vueuse/core";
-  import LoadingPokemonCard from "@/components/LoadingPokemonCard.vue";
+  import LoadingPokemonCard from "@/components/loading/LoadingPokemonCard.vue";
 
   const cardContainer = ref<HTMLHtmlElement>();
   const pokemonStore = usePokemonStore();
