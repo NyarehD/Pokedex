@@ -6,10 +6,11 @@
     </h1>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div
+        class="h-64 md:h-auto animate-pulse bg-neutral-500/50 dark:bg-neutral-300/50 rounded-md"
+        v-if="isLoading"></div>
+      <div
         class="dark:bg-white flex-1 rounded-md dark:shadow-2xl shadow-blue-400 flex flex-col justify-center"
-        :class="{
-          'animate-pulse bg-neutral-500/50 dark:bg-neutral-300/50': isLoading,
-        }">
+        v-else>
         <img
           :src="`https://img.pokemondb.net/artwork/large/${route.params.pokemon}.jpg`"
           class="w-full h-72 object-contain"
