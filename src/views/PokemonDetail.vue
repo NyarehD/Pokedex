@@ -21,53 +21,9 @@
         <h2 class="text-2xl font-semibold dark:text-neutral-200 text-center">
           PokeDex Data
         </h2>
-        <table class="table-auto min-w-full dark:text-neutral-200">
-          <LoadingPokemonDetail v-if="isLoading" />
-          <tbody class="divide-y divide-neutral-400" v-if="!isLoading">
-            <tr>
-              <th>No</th>
-              <th>{{ currentPokemon.order }}</th>
-            </tr>
-            <tr>
-              <th>Type</th>
-              <th>
-                <TypeIcon
-                  v-for="(type, i) in pokemonTypes"
-                  :key="i"
-                  :type="type.type" />
-              </th>
-            </tr>
-            <tr>
-              <th>Height</th>
-              <th class="">
-                {{ currentPokemon.height / 10 }} m ({{ heightInImperial }})
-              </th>
-            </tr>
-            <tr>
-              <th>Weight</th>
-              <th class="fw-normal">
-                {{ currentPokemon.weight }} kg ({{ weightInImperial }}lb)
-              </th>
-            </tr>
-            <tr>
-              <th>Abilities</th>
-              <th>
-                <p
-                  v-for="(ability, i) in currentPokemon.abilities"
-                  :key="`abilityId${i}`">
-                  <a
-                    :href="ability.ability.url"
-                    class="capitalize text-blue-500 hover:underline">
-                    {{ ability.ability.name }}
-                  </a>
-                  <span class="mx-2 text-secondary" v-if="ability.is_hidden">
-                    (Hidden Ability)
-                  </span>
-                </p>
-              </th>
-            </tr>
-          </tbody>
-        </table>
+        <PokemonDetailTable
+          :current-pokemon="currentPokemon"
+          :is-loading="isLoading" />
       </div>
     </div>
     <LoadingEvolutionChart v-if="isLoading" />
@@ -76,12 +32,11 @@
 </template>
 
 <script setup lang="ts">
-  import { computed, onMounted, ref, watch } from "vue";
+  import { onMounted, ref, watch } from "vue";
   import { useRoute } from "vue-router";
-  import TypeIcon from "@/components/TypeIcon.vue";
-  import LoadingPokemonDetail from "@/components/loading/LoadingPokemonDetail.vue";
   import EvolutionChart from "@/components/EvolutionChart.vue";
   import LoadingEvolutionChart from "@/components/loading/LoadingEvolutionChart.vue";
+  import PokemonDetailTable from "@/components/PokemonDetailTable.vue";
 
   const route = useRoute();
 
@@ -110,33 +65,13 @@
     evolutionChain.value = await fetchEvolutionChain();
   }
 
-  // Computed
-  const pokemonTypes = computed(() => {
-    return currentPokemon.value.types;
-  });
-
-  function addZeroAtFront(number: number) {
-    return number < 10 ? `0${number}` : number;
-  }
-
-  const heightInImperial = computed(() => {
-    let inTotalInch = currentPokemon.value.height * 3.937;
-    let inFeet = Math.floor(inTotalInch / 12);
-    let inRemainInch = Math.floor(inTotalInch % 12);
-    return inFeet === 0
-      ? `${addZeroAtFront(inRemainInch)}''`
-      : `${inFeet}'${addZeroAtFront(inRemainInch)}''`;
-  });
-
-  const weightInImperial = computed(() => {
-    return (currentPokemon.value.weight * 0.22046).toFixed(2);
-  });
-
+  // Life cycle
   onMounted(async () => {
     await fetchAll();
     isLoading.value = false;
   });
 
+  // Watcher
   watch(route, async () => {
     isLoading.value = true;
     await fetchAll();
@@ -144,12 +79,4 @@
   });
 </script>
 
-<style lang="scss" scoped>
-  th {
-    padding: 10px 0;
-
-    &:first-of-type {
-      font-weight: 600;
-    }
-  }
-</style>
+<style lang="scss" scoped></style>
