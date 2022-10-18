@@ -40,7 +40,9 @@
 
   const route = useRoute();
 
-  const currentPokemon = ref<{ species: string } | any[]>([]);
+  const currentPokemon = ref<{ species: { species: { url: string } } } | any>(
+    {}
+  );
   const evolutionChain = ref([]);
   const isLoading = ref(true);
 
