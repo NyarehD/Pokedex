@@ -54,7 +54,15 @@
   const evolutionChain = ref([]);
   const isLoading = ref(true);
 
-  onUpdated(() => useTitle(capitalize(route.params.pokemon)));
+  onUpdated(() =>
+    useTitle(
+      capitalize(
+        typeof route.params.pokemon === "string"
+          ? route.params.pokemon
+          : "Pokemon"
+      )
+    )
+  );
   onUnmounted(() => useTitle("Pokedex"));
 
   // fetching Pokemon
