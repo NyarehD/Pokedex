@@ -1,1 +1,0 @@
-import{_ as t,o as s,c as a,F as o,a as e,e as c}from"./index.19959c76.js";const r={name:"About"},n=e("div",{class:"row justify-content-center"},[e("div",{class:"col-4"},[e("img",{src:c,alt:""})])],-1),_=e("h1",{class:"text-center"},"This is about page",-1);function i(l,p,d,u,m,f){return s(),a(o,null,[n,_],64)}var x=t(r,[["render",i]]);export{x as default};
