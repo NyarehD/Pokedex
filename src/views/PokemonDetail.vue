@@ -32,11 +32,19 @@
 </template>
 
 <script setup lang="ts">
-  import { onMounted, ref, watch } from "vue";
+  import {
+    capitalize,
+    onMounted,
+    onUnmounted,
+    onUpdated,
+    ref,
+    watch,
+  } from "vue";
   import { useRoute } from "vue-router";
   import EvolutionChart from "@/components/EvolutionChart.vue";
   import LoadingEvolutionChart from "@/components/loading/LoadingEvolutionChart.vue";
   import PokemonDetailTable from "@/components/PokemonDetailTable.vue";
+  import { useTitle } from "@vueuse/core";
 
   const route = useRoute();
 
@@ -45,6 +53,9 @@
   );
   const evolutionChain = ref([]);
   const isLoading = ref(true);
+
+  onUpdated(() => useTitle(capitalize(route.params.pokemon)));
+  onUnmounted(() => useTitle("Pokedex"));
 
   // fetching Pokemon
   async function fetchPokemonApi() {
