@@ -1,5 +1,5 @@
 <template>
-  <table class="table-auto min-w-full dark:text-neutral-200">
+  <table class="min-w-full table-auto dark:text-neutral-200">
     <LoadingPokemonDetail v-if="isLoading" />
     <tbody class="divide-y divide-neutral-400" v-if="!isLoading">
       <tr>
@@ -38,7 +38,7 @@
               class="capitalize text-blue-500 hover:underline">
               {{ ability.ability.name }}
             </a>
-            <span class="mx-2 text-secondary" v-if="ability.is_hidden">
+            <span class="text-secondary mx-2" v-if="ability.is_hidden">
               (Hidden Ability)
             </span>
           </p>

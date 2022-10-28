@@ -1,24 +1,24 @@
 <template>
   <div class="customContainer px-12">
     <h1
-      class="text-4xl capitalize dark:text-neutral-200 text-center mb-8 font-semibold">
+      class="mb-8 text-center text-4xl font-semibold capitalize dark:text-neutral-200">
       {{ route.params.pokemon }}
     </h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div
-        class="h-64 md:h-auto animate-pulse bg-neutral-500/50 dark:bg-neutral-300/50 rounded-md"
+        class="h-64 animate-pulse rounded-md bg-neutral-500/50 dark:bg-neutral-300/50 md:h-auto"
         v-if="isLoading"></div>
       <div
-        class="dark:bg-white flex-1 rounded-md dark:shadow-2xl shadow-blue-400 flex flex-col justify-center"
+        class="flex flex-1 flex-col justify-center rounded-md shadow-blue-400 dark:bg-white dark:shadow-2xl"
         v-else>
         <img
           :src="`https://img.pokemondb.net/artwork/large/${route.params.pokemon}.jpg`"
-          class="w-full h-72 object-contain"
+          class="h-72 w-full object-contain"
           :alt="`${route.params.pokemon}`"
           loading="lazy" />
       </div>
       <div class="">
-        <h2 class="text-2xl font-semibold dark:text-neutral-200 text-center">
+        <h2 class="text-center text-2xl font-semibold dark:text-neutral-200">
           PokeDex Data
         </h2>
         <PokemonDetailTable

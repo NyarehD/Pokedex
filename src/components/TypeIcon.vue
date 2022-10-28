@@ -1,6 +1,6 @@
 <template>
   <button
-    class="mx-1 capitalize py-1.5 px-3 text-white font-medium rounded-md"
+    class="mx-1 rounded-md py-1.5 px-3 font-medium capitalize text-white"
     :class="[`type-${type.name}`]">
     {{ type.name }}
   </button>

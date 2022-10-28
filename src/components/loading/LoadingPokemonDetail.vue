@@ -4,35 +4,35 @@
       <th>No</th>
       <th>
         <div
-          class="w-90 h-4 bg-neutral-500/50 dark:bg-neutral-300/50 rounded-md animate-pulse"></div>
+          class="w-90 h-4 animate-pulse rounded-md bg-neutral-500/50 dark:bg-neutral-300/50"></div>
       </th>
     </tr>
     <tr>
       <th>Type</th>
       <th>
         <div
-          class="w-90 h-4 bg-neutral-500/50 dark:bg-neutral-300/50 rounded-md animate-pulse"></div>
+          class="w-90 h-4 animate-pulse rounded-md bg-neutral-500/50 dark:bg-neutral-300/50"></div>
       </th>
     </tr>
     <tr>
       <th>Height</th>
       <th>
         <div
-          class="w-90 h-4 bg-neutral-500/50 dark:bg-neutral-300/50 rounded-md animate-pulse"></div>
+          class="w-90 h-4 animate-pulse rounded-md bg-neutral-500/50 dark:bg-neutral-300/50"></div>
       </th>
     </tr>
     <tr>
       <th>Weight</th>
       <th>
         <div
-          class="w-90 h-4 bg-neutral-500/50 dark:bg-neutral-300/50 rounded-md animate-pulse"></div>
+          class="w-90 h-4 animate-pulse rounded-md bg-neutral-500/50 dark:bg-neutral-300/50"></div>
       </th>
     </tr>
     <tr>
       <th>Abilities</th>
       <th>
         <div
-          class="w-90 h-12 my-3 bg-neutral-500/50 dark:bg-neutral-300/50 rounded-md animate-pulse"></div>
+          class="w-90 my-3 h-12 animate-pulse rounded-md bg-neutral-500/50 dark:bg-neutral-300/50"></div>
       </th>
     </tr>
   </tbody>

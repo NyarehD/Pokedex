@@ -1,7 +1,7 @@
 <template>
   <main class="customContainer dark:bg-neutral-900">
     <div
-      class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4"
+      class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4"
       ref="cardContainer">
       <KeepAlive>
         <PokemonCard
@@ -9,7 +9,7 @@
           :pokemon="pokemon"
           :key="pokemon.name" />
       </KeepAlive>
-      <LoadingPokemonCard v-for="index in 6" :key="index" />
+      <LoadingPokemonCard v-for="index in 4" :key="index" />
     </div>
   </main>
 </template>
